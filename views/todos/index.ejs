@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Todo App</title>
+  <link rel="stylesheet" href="/stylesheets/style.css" />
+</head>
+
+<body>
+  <%- include('../partials/nav.ejs'); %>
+  <header>
+    <h1 class="header-title">Rendering TODO LIST page</h1>
+  </header>
+  <div class="todo-section">
+    <div class="todo-container">
+      <h2 class="header-title">To Do</h2>
+      <ul>
+        <% todos.forEach(todo => { %>
+        <li class="task-item">
+          <a href="/todos/<%= todo._id %>/edit"><%= todo.taskName %></a>
+          <p><%= todo.taskDescription %></p>
+        </li>
+        <% }); %>
+      </ul>
+    </div>
+
+    <div class="todo-container">
+      <h2 class="header-title">Test</h2>
+    </div>
+  </div>
+</body>
+
+</html>

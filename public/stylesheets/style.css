@@ -1,0 +1,36 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+.todo-section {
+  display: flex;
+}
+
+.todo-container {
+  min-height: 600px;
+  padding: 16px;
+  margin: 36px;
+}
+
+.todo-container ul {
+  list-style: none;
+  padding: 6px;
+}
+
+.task-item {
+  padding: 12px 24px;
+  margin-top: 16px;
+}
+
+.task-item a {
+  text-decoration: none;
+  font-size: 24px;
+}
+
+.task-item, .todo-container {
+  border: 3px solid black;
+  border-radius: 24px;
+  width: 100%;
+}
