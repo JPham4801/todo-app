@@ -14,22 +14,18 @@ mongoose.connection.on('connected', () => {
   console.log(`Connected to MongoDB ${mongoose.connection.name}.`);
 });
 
-const PORT = process.env.PORT ? process.env.PORT : '3000';
+// Set the port from environment variable or default to 3000
+const port = process.env.PORT ? process.env.PORT : '3000';
 
 // Import the Todo model
 const Todo = require('./models/todo.js');
 
 // Middlewares
 app.use(express.urlencoded({ extended: false }));
-app.use(express.urlencoded({ extended: false }));
 app.use(methodOverride('_method'));
 app.use(morgan('dev'));
 
 app.use(express.static(path.join(__dirname, 'public')));
-
-app.listen(3000, () => {
-  console.log('Listening on port 3000');
-});
 
 app.get('/', async (req, res, next) => {
   res.render('index.ejs');
@@ -44,19 +40,33 @@ app.get('/todos/new', async (req, res, next) => {
   res.render('todos/new.ejs');
 });
 
-app.post('/todos', async (req, res, next) => {
-  try {
-    await Todo.create(req.body);
-    res.redirect('/todos');
-  } catch (error) {
-    console.log(error)
-  }
+app.get('/todos/:todoId', async (req, res, next) => {
+  const foundTodo = await Todo.findById(req.params.todoId);
+  res.render('todos/show.ejs', { todo: foundTodo });
 });
 
-app.listen(process.env.PORT || 3000, function () {
-  console.log(
-    'Express server listening on port %d in %s mode',
-    this.address().port,
-    app.settings.env
-  );
+app.get('/todos/:todoId/edit', async (req, res, next) => {
+  const foundTodo = await Todo.findById(req.params.todoId);
+  res.render('todos/edit.ejs', { todo: foundTodo });
+});
+
+app.post('/todos', async (req, res, next) => {
+  req.body.isComplete = false;
+
+  await Todo.create(req.body);
+  res.redirect('/todos');
+});
+
+app.put('/todos/:todoId', async (req, res, next) =>{
+  await Todo.findByIdAndUpdate(req.params.todoId, req.body);
+  res.redirect(`/todos/${req.params.todoId}`);
+})
+
+app.delete('/todos/:todoId', async (req, res, next) =>{
+  await Todo.findByIdAndDelete(req.params.todoId);
+  res.redirect(`/todos`);
+})
+
+app.listen(port, () => {
+  console.log(`The express app is ready on port ${port}!`);
 });

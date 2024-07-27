@@ -4,24 +4,34 @@
   box-sizing: border-box;
 }
 
+nav a {
+  text-decoration: none;
+}
+
 .todo-section {
   display: flex;
 }
 
-.todo-container {
-  min-height: 600px;
-  padding: 16px;
-  margin: 36px;
+.task-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 400px;
+  max-height: 650px;
+  padding: 26px;
+  margin: 20px;
+  overflow-y: scroll;
+  scrollbar-width: none;
 }
 
-.todo-container ul {
+.task-container ul {
   list-style: none;
   padding: 6px;
 }
 
-.task-item {
+.task-item{
   padding: 12px 24px;
-  margin-top: 16px;
+  margin-bottom: 16px;
+  list-style: none;
 }
 
 .task-item a {
@@ -29,8 +39,40 @@
   font-size: 24px;
 }
 
-.task-item, .todo-container {
-  border: 3px solid black;
+.task-item, .task-container, .todo-btn, .todo-container{
+  border: 2px solid black;
   border-radius: 24px;
   width: 100%;
+}
+
+.todo-btn {
+  cursor: pointer;
+  padding: 12px 24px;
+}
+
+.todo-btn:hover {
+  background-color: #b8c0c9;
+  box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+.btn-link {
+  text-decoration: none;
+}
+
+.todo-section {
+  display: flex;
+  justify-content: center;
+  padding: 36px;
+}
+
+.todo-container {
+  padding: 18px;
+}
+
+.page-content {
+  padding: 12px;
+}
+
+.page-content div{
+  padding: 12px 0;
 }
