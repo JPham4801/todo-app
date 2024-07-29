@@ -1,10 +1,14 @@
 <nav>
   <% if(user) { %>
-    <a href="/users/<%= user._id %>/todos">Your Todos</a>
-    <a href="/auth/sign-out">Sign Out</a>
-    <a href="/users/<%= user._id %>/todos/new">Create Task</a>
+    <ul class="nav_menu">
+      <li class="nav_item"><a class="nav_link" href="/users/<%= user._id %>/todos">Your Todos</a></li>
+      <li class="nav_item"><a class="nav_link" href="/users/<%= user._id %>/todos/new">Create Task</a></li>
+      <li class="nav_item"><a class="nav_link" href="/auth/sign-out">Sign Out</a></li>
+    </ul>
   <% } else { %>
-    <a href="/auth/sign-in">Sign In</a>
-    <a href="/auth/sign-up">Sign Up</a>
+    <ul class="nav_menu">
+      <li class="nav_item"><a class="nav_link" class="signin-link" href="/auth/sign-in">Sign In</a></li>
+      <li class="nav_item"><a class="nav_link" class="signup-link" href="/auth/sign-up">Sign Up</a></li>
+    </ul>
   <% } %>
 </nav>

@@ -3,19 +3,20 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Todo App</title>
+    <title>Task Buddy</title>
     <link rel="stylesheet" href="/stylesheets/style.css" />
   </head>
 
   <body>
-    <%- include('./partials/nav.ejs'); %>
-    <% if (user) { %>
-    <h1>Welcome to the app, <%= user.username %>!</h1>
-    <p>
-      <a href="/auth/sign-out">Sign out</a>
-    </p>
-    <% } else { %>
-    <h1>Welcome to the app, guest.</h1>
-    <% } %>
+    <div class="index-container">
+      <div class="text-container">
+        <h1 class="main-header">Welcome to Task Buddy</h1>
+        <p class="subheader">Your Partner in Productivity</p>
+      </div>
+      <div class="auth-links">
+        <a class="signup-link" href="/auth/sign-up">Sign Up</a>
+        <a class="signin-link" href="/auth/sign-in">Sign In</a>
+      </div>
+    </div>
   </body>
 </html>
