@@ -28,7 +28,7 @@ nav a {
   padding: 6px;
 }
 
-.task-item{
+.task-item {
   padding: 12px 24px;
   margin-bottom: 16px;
   list-style: none;
@@ -39,7 +39,10 @@ nav a {
   font-size: 24px;
 }
 
-.task-item, .task-container, .todo-btn, .todo-container{
+.task-item,
+.task-container,
+.todo-btn,
+.todo-container {
   border: 2px solid black;
   border-radius: 24px;
   width: 100%;
@@ -73,6 +76,28 @@ nav a {
   padding: 12px;
 }
 
-.page-content div{
+.page-content div {
   padding: 12px 0;
+}
+
+.scrollbar {
+  height: 300px;
+  width: 50%;
+  overflow: auto;
+  padding: 0 10px;
+}
+
+#scrollbar1::-webkit-scrollbar {
+  width: 10px;
+}
+
+#scrollbar1::-webkit-scrollbar-track {
+  border-radius: 8px;
+  background-color: #e7e7e7;
+  border: 1px solid #cacaca;
+}
+
+#scrollbar1::-webkit-scrollbar-thumb {
+  border-radius: 8px;
+  background-color: #d55959;
 }

@@ -5,6 +5,13 @@ const mongoose = require('mongoose');
 const methodOverride = require('method-override');
 const morgan = require('morgan');
 const path = require('path');
+const session = require('express-session');
+const isSignedIn = require('./middleware/is-signed-in.js');
+const passUserToView = require('./middleware/pass-user-to-view.js');
+
+
+const authController = require('./controllers/auth.js');
+const todosController = require('./controllers/todos.js');
 
 const app = express();
 
@@ -17,56 +24,38 @@ mongoose.connection.on('connected', () => {
 // Set the port from environment variable or default to 3000
 const port = process.env.PORT ? process.env.PORT : '3000';
 
-// Import the Todo model
-const Todo = require('./models/todo.js');
+// Import the User model
+const User = require('./models/user.js');
 
 // Middlewares
 app.use(express.urlencoded({ extended: false }));
+app.use(express.static(path.join(__dirname, 'public')));
 app.use(methodOverride('_method'));
 app.use(morgan('dev'));
+app.use(
+  session({
+    secret: process.env.SESSION_SECRET,
+    resave: false,
+    saveUninitialized: true,
+  })
+);
 
-app.use(express.static(path.join(__dirname, 'public')));
-
+// Routes accessible to everyone
+app.use(passUserToView);
 app.get('/', async (req, res, next) => {
-  res.render('index.ejs');
+  if (req.session.user) {
+    res.redirect(`/users/${req.session.user_id}/todos`);
+  } else {
+    res.render('index.ejs');
+  }
 });
+app.use('/auth', authController);
 
-app.get('/todos', async (req, res, next) => {
-  const allTodos = await Todo.find();
-  res.render('todos/index.ejs', { todos: allTodos });
-});
-
-app.get('/todos/new', async (req, res, next) => {
-  res.render('todos/new.ejs');
-});
-
-app.get('/todos/:todoId', async (req, res, next) => {
-  const foundTodo = await Todo.findById(req.params.todoId);
-  res.render('todos/show.ejs', { todo: foundTodo });
-});
-
-app.get('/todos/:todoId/edit', async (req, res, next) => {
-  const foundTodo = await Todo.findById(req.params.todoId);
-  res.render('todos/edit.ejs', { todo: foundTodo });
-});
-
-app.post('/todos', async (req, res, next) => {
-  req.body.isComplete = false;
-
-  await Todo.create(req.body);
-  res.redirect('/todos');
-});
-
-app.put('/todos/:todoId', async (req, res, next) =>{
-  await Todo.findByIdAndUpdate(req.params.todoId, req.body);
-  res.redirect(`/todos/${req.params.todoId}`);
-})
-
-app.delete('/todos/:todoId', async (req, res, next) =>{
-  await Todo.findByIdAndDelete(req.params.todoId);
-  res.redirect(`/todos`);
-})
+// Routes accessible to User only
+app.use(isSignedIn);
+app.use('/users/:userId/todos', todosController);
 
 app.listen(port, () => {
   console.log(`The express app is ready on port ${port}!`);
 });
+

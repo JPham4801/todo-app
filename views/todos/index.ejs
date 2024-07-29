@@ -7,7 +7,7 @@
   <div class="todo-section">
     <div class="todo-container">
       <h2 class="section-title">To Do</h2>
-      <ul>
+      <ul class="scrollbar" id="scrollbar1">
         <% todos.forEach(todo => { %>
         <li class="task-item">
           <a href="/todos/<%= todo._id %>"><%= todo.taskName %></a>
