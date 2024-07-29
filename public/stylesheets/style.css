@@ -27,6 +27,7 @@ body {
 
 .index-body {
   background-image: url('/resources/Task_Buddy_cover.png');
+  alt: 'Task Buddy Cover Image';
   background-size: cover;
   background-position: center;
   display: flex;
