@@ -19,6 +19,7 @@
         <% todos.forEach(todo => { %>
           <h3><%= todo.taskName %></h3>
           <p><%= todo.taskDescription %></p>
+          <a href="/users/<%= user._id %>/todos/<%= todo._id %>">Edit Task</a>
         <% }); %>
       </li>
     </ul>
