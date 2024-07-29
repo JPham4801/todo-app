@@ -4,21 +4,7 @@
   <header>
     <h1 class="section-title">USER's Todo page</h1>
   </header>
-  <div class="todo-section">
-    <div class="todo-container">
-      <h2 class="section-title">To Do</h2>
-      <ul class="scrollbar" id="scrollbar1">
-        <% todos.forEach(todo => { %>
-        <li class="task-item">
-          <a href="/todos/<%= todo._id %>"><%= todo.taskName %></a>
-          <p><%= todo.taskDescription %></p>
-        </li>
-        <% }); %>
-        <a class="btn-link" href="/todos/new">
-          <button class="todo-btn">Create new Task</button>
-        </a>
-      </ul>
-    </div>
+  
 
     <div class="todo-container">
       <h2 class="section-title">Completed</h2>

@@ -9,19 +9,24 @@ router.get('/sign-up', (req, res) => {
 });
 
 router.post('/sign-up', async (req, res, next) => {
-  const userInDatabase = await User.findOne({ username: req.body.username });
-  if (userInDatabase) {
-    return res.send('username is already taken');
-  }
-  if (req.body.password !== req.body.confirmPassword) {
-    return res.send('Password and confirm do not match');
-  }
+  try {
+    const userInDatabase = await User.findOne({ username: req.body.username });
+    if (userInDatabase) {
+      return res.send('username is already taken');
+    }
+    if (req.body.password !== req.body.confirmPassword) {
+      return res.send('Password and confirm do not match');
+    }
 
-  const hashedPassword = bcrypt.hashSync(req.body.password, SALT_ROUNDS);
-  req.body.password = hashedPassword;
-  
-  const user = await User.create(req.body);
-  res.redirect('/');
+    const hashedPassword = bcrypt.hashSync(req.body.password, SALT_ROUNDS);
+    req.body.password = hashedPassword;
+
+    const user = await User.create(req.body);
+    res.redirect('/');
+  } catch (error) {
+    console.log(error)
+    res.redirect('/');
+  }
 });
 
 router.get('/sign-in', (req, res, next) => {
@@ -29,21 +34,27 @@ router.get('/sign-in', (req, res, next) => {
 });
 
 router.post('/sign-in', async (req, res, next) => {
-  const userInDatabase = await User.findOne({ username: req.body.username });
-  if (!userInDatabase) {
-    return res.send('Login failed');
+  try {
+    const userInDatabase = await User.findOne({ username: req.body.username });
+    if (!userInDatabase) {
+      return res.send('Login failed');
+    }
+    const validPassword = bcrypt.compareSync(
+      req.body.password,
+      userInDatabase.password
+    );
+    if (!validPassword) {
+      return res.send('Login failed, Please try again');
+    }
+    req.session.user = {
+      username: userInDatabase.username,
+      _id: userInDatabase._id,
+    };
+    res.redirect('/');
+  } catch (error) {
+    console.log(error)
+    res.redirect('/');
   }
-  const validPassword = bcrypt.compareSync(
-    req.body.password,
-    userInDatabase.password
-  );
-  if (!validPassword) {
-    return res.send('Login failed, Please try again');
-  }
-  req.session.user = {
-    username: userInDatabase.username,
-  };
-  res.redirect('/');
 });
 
 router.get('/sign-out', (req, res, next) => {

@@ -12,7 +12,7 @@ const todoSchema = new mongoose.Schema({
   isComplete: Boolean,
 }); 
 
-const userSchema = new mongoose.Schema({
+const userSchema = mongoose.Schema({
   username: {
     type: String,
     required: true,
