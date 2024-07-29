@@ -1,14 +1,23 @@
-  <%- include('../partials/html-head.ejs'); %>
-  <%- include('../partials/nav.ejs'); %>
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Todo App</title>
+    <link rel="stylesheet" href="/stylesheets/style.css" />
+  </head>
+
+  <body>
+    <%- include('../partials/nav.ejs'); %>
   <h1>Rendering CREATE TODO page</h1>
-  <form action="/todos" method="POST" id="taskForm">
+  <form action="/users/<%= user._id %>/todos" method="POST" id="taskForm">
     <label for="taskName">Task Name: </label>
     <input type="text" name="taskName" placeholder="required" required>
 
     <label for="taskDescription">Description: </label>
-    <input type="text" name="taskDescription" placeholder="optional" required>
+    <input type="text" name="taskDescription" placeholder="optional">
 
-    <button id="test" type="submit">Add Task</button>
+    <button type="submit">Add Task</button>
   </form>
 
   <script>

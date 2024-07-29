@@ -1,5 +1,10 @@
 <nav>
-  <a href="/">Home</a>
-  <a href="/todos">View </a>
-  <a href="/todos/new">Create</a>
+  <% if(user) { %>
+    <a href="/users/<%= user._id %>/todos">Your Todos</a>
+    <a href="/auth/sign-out">Sign Out</a>
+    <a href="/users/<%= user._id %>/todos/new">Create Task</a>
+  <% } else { %>
+    <a href="/auth/sign-in">Sign In</a>
+    <a href="/auth/sign-up">Sign Up</a>
+  <% } %>
 </nav>

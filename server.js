@@ -43,9 +43,10 @@ app.use(
 // Routes accessible to everyone
 app.use(passUserToView);
 
-app.get('/', async (req, res, next) => {
+app.get('/', (req, res, next) => {
   if (req.session.user) {
-    res.redirect(`/users/${req.session.user_id}/todos`);
+    // console.log(req.session.user)
+    res.redirect(`/users/${req.session.user._id}/todos`);
   } else {
     res.render('index.ejs');
   }

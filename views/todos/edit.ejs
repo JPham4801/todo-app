@@ -1,5 +1,14 @@
-  <%- include('../partials/html-head.ejs'); %>
-  <%- include('../partials/nav.ejs'); %>
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Todo App</title>
+    <link rel="stylesheet" href="/stylesheets/style.css" />
+  </head>
+
+  <body>
+    <%- include('../partials/nav.ejs'); %>
   <h1>Editing...</h1>
   <form action="/todos/<%= todo._id %>?_method=PUT" method="POST" id="taskForm">
     <label for="taskName">Edit Task Name: </label>

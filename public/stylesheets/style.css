@@ -4,6 +4,32 @@
   box-sizing: border-box;
 }
 
+/* scrollbar styling */
+.scrollbar {
+  height: 300px;
+  width: 50%;
+  overflow: auto;
+  padding: 0 10px;
+}
+
+#scrollbar1::-webkit-scrollbar {
+  width: 10px;
+}
+
+#scrollbar1::-webkit-scrollbar-track {
+  border-radius: 8px;
+  background-color: #e7e7e7;
+  border: 1px solid #cacaca;
+}
+
+#scrollbar1::-webkit-scrollbar-thumb {
+  border-radius: 8px;
+  background-color: #d55959;
+}
+
+
+/* -------------------------------------------------------------------- */
+/* OLD BELOW */
 nav a {
   text-decoration: none;
 }
@@ -80,24 +106,5 @@ nav a {
   padding: 12px 0;
 }
 
-.scrollbar {
-  height: 300px;
-  width: 50%;
-  overflow: auto;
-  padding: 0 10px;
-}
-
-#scrollbar1::-webkit-scrollbar {
-  width: 10px;
-}
-
-#scrollbar1::-webkit-scrollbar-track {
-  border-radius: 8px;
-  background-color: #e7e7e7;
-  border: 1px solid #cacaca;
-}
-
-#scrollbar1::-webkit-scrollbar-thumb {
-  border-radius: 8px;
-  background-color: #d55959;
-}
+/* OLD ENDS */
+/* -------------------------------------------------------------------- */

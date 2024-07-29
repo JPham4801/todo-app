@@ -1,14 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Todo App</title>
+    <link rel="stylesheet" href="/stylesheets/style.css" />
+  </head>
 
-  <%- include('../partials/html-head.ejs'); %>
-  <%- include('../partials/nav.ejs'); %>
+  <body>
+    <%- include('../partials/nav.ejs'); %>
   <header>
     <h1 class="section-title">USER's Todo page</h1>
   </header>
-  
-
-    <div class="todo-container">
-      <h2 class="section-title">Completed</h2>
-    </div>
+  <div class="todo-container">
+    <h2 class="section-title">Tasks</h2>
+    <ul>
+      <li>
+        <% todos.forEach(todo => { %>
+          <h3><%= todo.taskName %></h3>
+          <p><%= todo.taskDescription %></p>
+        <% }); %>
+      </li>
+    </ul>
+  </div>
+  <div class="todo-container">
+    <h2 class="section-title">Completed</h2>
+  </div>
   </div>
 </body>
 

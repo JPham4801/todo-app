@@ -5,11 +5,11 @@ const todoSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  taskDescription: {
-    type: String,
-    required: true,
+  taskDescription: String,
+  isComplete: {
+    type: Boolean,
+    default: false,
   },
-  isComplete: Boolean,
 }); 
 
 const userSchema = mongoose.Schema({

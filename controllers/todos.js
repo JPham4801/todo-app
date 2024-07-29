@@ -3,47 +3,53 @@ const router = express.Router()
 
 const User = require('../models/user.js');
 
-router.get('/', (req, res, next) =>{
+// Index
+router.get('/', async (req, res, next) =>{
   try {
-    res.render('todos/index.ejs');
+    const currentUser = await User.findById(req.session.user._id);
+    res.render('todos/index.ejs', {
+      todos: currentUser.todos
+    });
   } catch (error) {
     console.log(error)
     res.redirect('/');
   }
 })
 
+// Create
+router.get('/new', (req, res, next) => {
+  res.render('todos/new.ejs');
+});
+
+router.post('/', async (req, res, next) => {
+  const currentUser = await User.findById(req.session.user._id);
+  currentUser.todos.push(req.body)
+  await currentUser.save()
+
+  res.redirect(`/users/${currentUser._id}/todos`);
+});
 
 module.exports = router
 
 
 // GRAVEYARD -------------------------------------------------------------------
 
-// router.get('/new', async (req, res, next) => {
-//   // res.render('todos/new.ejs');
-// });
-
 // router.get('/:todoId', async (req, res, next) => {
-//   // const foundTodo = await Todo.findById(req.params.todoId);
-//   // res.render('todos/show.ejs', { todo: foundTodo });
+  // const foundTodo = await Todo.findById(req.params.todoId);
+  // res.render('todos/show.ejs', { todo: foundTodo });
 // });
 
 // router.get('/:todoId/edit', async (req, res, next) => {
-//   // const foundTodo = await Todo.findById(req.params.todoId);
-//   // res.render('todos/edit.ejs', { todo: foundTodo });
-// });
-
-// router.post('', async (req, res, next) => {
-//   // req.body.isComplete = false;
-//   // await Todo.create(req.body);
-//   // res.redirect('/todos');
+  // const foundTodo = await Todo.findById(req.params.todoId);
+  // res.render('todos/edit.ejs', { todo: foundTodo });
 // });
 
 // router.put('/:todoId', async (req, res, next) => {
-//   // await Todo.findByIdAndUpdate(req.params.todoId, req.body);
-//   // res.redirect(`/todos/${req.params.todoId}`);
+  // await Todo.findByIdAndUpdate(req.params.todoId, req.body);
+  // res.redirect(`/todos/${req.params.todoId}`);
 // });
 
 // router.delete('/:todoId', async (req, res, next) => {
-//   // await Todo.findByIdAndDelete(req.params.todoId);
-//   // res.redirect(`/todos`);
+  // await Todo.findByIdAndDelete(req.params.todoId);
+  // res.redirect(`/todos`);
 // });
