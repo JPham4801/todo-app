@@ -1,21 +1,36 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Task Buddy</title>
-    <link rel="stylesheet" href="/stylesheets/style.css" />
-  </head>
 
-  <body>
-    <%- include('../partials/nav.ejs'); %>
-  <h1>Editing </h1>
-  <form action="/users/<%= user._id %>/todos/<%= todo._id %>?_method=PUT" method="POST" id="taskForm">
-    <label for="taskName">Edit Task Name: </label>
-    <input type="text" name="taskName" value="<%= todo.taskName %>" required>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Task Buddy</title>
+  <link rel="stylesheet" href="/stylesheets/style.css" />
+</head>
 
-    <label for="taskDescription">Description: </label>
-    <input type="text" name="taskDescription" value="<%= todo.taskDescription %>" required>
+<body class="todo-body">
+  <%- include('../partials/nav.ejs'); %>
+  <div class="form_container">
+    <h1 class="form_header">Edit Task</h1>
+    <form action="/users/<%= user._id %>/todos/<%= todo._id %>?_method=PUT" method="POST" id="taskForm">
+      <div class="form_group">
+        <label for="taskName">Edit Task Name:</label>
+        <input type="text" name="taskName" id="taskName" value="<%= todo.taskName %>" required />
+      </div>
+      <div class="form_group">
+        <label for="taskDescription">Description:</label>
+        <textarea type="text" name="taskDescription" id="taskDescription" required><%= todo.taskDescription %></textarea>
+      </div>
+      <div class="form_group">
+        <label for="isComplete">Is task complete?</label>
+        <select name="isComplete" id="isComplete">
+          <option value="true">Yes</option>
+          <option value="false">No</option>
+        </select>
+      </div>
+      <button type="submit" class="form_button">Update Task</button>
+    </form>
+  </div>
+</body>
 
-    <button id="test" type="submit">Add Task</button>
-  </form>
+</html>

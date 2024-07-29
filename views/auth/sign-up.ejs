@@ -1,23 +1,33 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Task Buddy</title>
-    <link rel="stylesheet" href="/stylesheets/style.css" />
-  </head>
 
-  <body>
-    <%- include('../partials/nav.ejs'); %>
-    <h1>Create a new account!</h1>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Task Buddy</title>
+  <link rel="stylesheet" href="/stylesheets/style.css" />
+</head>
+
+<body class="auth-body">
+  <%- include('../partials/nav.ejs'); %>
+  <div class="form_container">
+    <h2 class="form_header">Create a new account!</h2>
     <form action="/auth/sign-up" method="POST">
-      <label for="username">Username:</label>
-      <input type="text" name="username" id="username" />
-      <label for="password">Password:</label>
-      <input type="password" name="password" id="password" />
-      <label for="confirmPassword">Confirm Password:</label>
-      <input type="password" name="confirmPassword" id="confirmPassword" />
-      <button type="submit">Sign up</button>
+      <div class="form_group">
+        <label for="username">Username:</label>
+        <input type="text" name="username" id="username" required />
+      </div>
+      <div class="form_group">
+        <label for="password">Password:</label>
+        <input type="password" name="password" id="password" required />
+      </div>
+      <div class="form_group">
+        <label for="confirmPassword">Confirm Password:</label>
+        <input type="password" name="confirmPassword" id="confirmPassword" required />
+      </div>
+      <button type="submit" class="form_button">Sign up</button>
     </form>
-  </body>
+  </div>
+</body>
+
 </html>

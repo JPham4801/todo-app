@@ -6,20 +6,22 @@
     <title>Task Buddy</title>
     <link rel="stylesheet" href="/stylesheets/style.css" />
   </head>
-  <body>
+  <body class="todo-body">
     <%- include('../partials/nav.ejs'); %>
-    <div class="page-content">
-      <div>
-        <h2><%= todo.taskName %></h2>
-        <p><%= todo.taskDescription %></p>
+    <div class="form_container">
+      <div class="form_header">
+        <h2 class="card_name"><%= todo.taskName %></h2>
+        <p class="card_description"><%= todo.taskDescription %></p>
+        <div>
+          <a href="/users/<%= user._id %>/todos/<%= todo._id %>/edit">
+            <button class="form_button">Edit task</button>
+          </a>
+          <form action="/users/<%= user._id %>/todos/<%= todo._id %>?_method=delete" method="POST">
+            <button class="form_button">Delete Task</button>
+          </form>
+        </div>
       </div>
       <div>
-        <a href="/users/<%= user._id %>/todos/<%= todo._id %>/edit">
-          <button>Edit task</button>
-        </a>
-        <form action="/users/<%= user._id %>/todos/<%= todo._id %>?_method=delete" method="POST">
-          <button class="todo-btn">Delete</button>
-        </form>
       </div>
     </div>
   </body>

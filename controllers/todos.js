@@ -65,7 +65,7 @@ router.put('/:todoId', async (req, res, next) => {
     todo.set(req.body);
     await currentUser.save();
 
-    res.redirect(`/users/${currentUser._id}/todos/${req.params.todoId}`);
+    res.redirect(`/users/${currentUser._id}/todos`);
   } catch (error) {
     console.log(error);
     res.redirect('/');

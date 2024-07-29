@@ -45,7 +45,6 @@ app.use(passUserToView);
 
 app.get('/', (req, res, next) => {
   if (req.session.user) {
-    // console.log(req.session.user)
     res.redirect(`/users/${req.session.user._id}/todos`);
   } else {
     res.render('index.ejs');
@@ -61,4 +60,3 @@ app.use('/users/:userId/todos', todosController);
 app.listen(port, () => {
   console.log(`The express app is ready on port ${port}!`);
 });
-

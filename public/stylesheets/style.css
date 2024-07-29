@@ -4,44 +4,193 @@
   box-sizing: border-box;
 }
 
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap');
-
 :root {
-  --background: #E3F2FD;
-  --primary-text: #0D47A1
-  --secondary-text: #42A5F5;
-  --accent: #90CAF9
-  --button: #64B5F6
-
+  --background: #e3f2fd;
+  --primary-text: #0d47a1;
+  --secondary-text: #42a5f5;
+  --primary-accent: #0D47A1;
+  --secondary-accent: #90caf9;
+  --nav-text: #FFFFFF;
+  --button: #64b5f6;
 }
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap');
 
 body {
   font-family: 'Poppins', sans-serif;
   display: flex;
   flex-direction: column;
+  background-color: var(--background);
   height: 100vh;
   width: 100vw;
 }
 
-/* scrollbar styling */
-.scrollbar {
-  height: 300px;
-  width: 50%;
-  overflow: auto;
-  padding: 0 10px;
+.index-body {
+  background-image: url('/resources/Task_Buddy_cover.png');
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  color: #FFFFFF;
 }
 
-#scrollbar1::-webkit-scrollbar {
-  width: 10px;
+.auth-body{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
-#scrollbar1::-webkit-scrollbar-track {
-  border-radius: 8px;
-  background-color: #e7e7e7;
-  border: 1px solid #cacaca;
+.todo-body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100vh;
+  width: 100vw;
+
 }
 
-#scrollbar1::-webkit-scrollbar-thumb {
-  border-radius: 8px;
-  background-color: #d55959;
+.text-container {
+  background-color: rgba(0, 0, 0, 0.6);
+  padding: 20px;
+  border-radius: 10px;
+  margin: 20px 120px;
+}
+
+.main-header, .subheader {
+  margin: 12px 24px;
+}
+
+/* Nav bar */
+nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: var(--primary-accent);
+  padding: 16px 24px;
+  width: 100%;
+}
+
+.nav_menu {
+  display: flex;
+  list-style: none;
+}
+
+.nav_item {
+  margin: 0 10px;
+}
+
+.nav_link, .navbar_logo {
+  text-decoration: none;
+  color: var(--nav-text);
+  font-weight: bold;
+}
+
+.navbar_logo {
+  font-size: 30px;
+}
+
+.nav_link:hover {
+  color: var(--secondary-accent);
+}
+
+/* to-do list styling */
+.lists {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  gap: 12px;
+}
+
+.list_container, .card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border: 3px solid var(--primary-accent);
+  border-radius: 12px;
+  width: 48%;
+  padding: 12px;
+  margin: 10px 0;
+}
+
+.list_title {
+  margin: 12px auto;
+  padding: 8px;
+  font-weight: bolder;
+  font-size: 28px;
+}
+
+.card {
+  border-color: var(--secondary-accent);
+  width: 100%;
+}
+
+.card * {
+  display: flex;
+  flex-direction: column;
+  padding: 12px;
+}
+
+.card_description {
+  font-size: 16px;
+  margin-bottom: 12px;
+}
+
+/* form styles */
+.form_container {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin: 12px;
+  border: 3px solid var(--primary-accent);
+  border-radius: 12px;
+  width: 100%;
+  max-width: 400px;
+  text-align: center;
+}
+
+.form_header {
+  margin: 20px 10px;
+  color: var(--primary-accent);
+}
+
+.form_group {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 6px 36px;
+  margin-bottom: 15px;
+}
+
+input {
+  padding: 10px;
+  border: 1px solid var(--primary-accent);
+  border-radius: 5px;
+  font-size: 16px;
+  width: 100%;
+}
+
+.form_button, .edit_btn{
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  background-color: var(--primary-accent);
+  color: white;
+  font-size: 16px;
+  cursor: pointer;
+  width: 80%;
+  margin-bottom: 26px;
+}
+
+.form_button:hover {
+  background-color: var(--secondary-accent);
+}
+
+.edit_btn {
+  text-align: center;
+}
+
+#taskDescription {
+  height: 100px;
+  width: 100%;
 }

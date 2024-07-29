@@ -1,21 +1,29 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Task Buddy</title>
-    <link rel="stylesheet" href="/stylesheets/style.css" />
-  </head>
 
-  <body>
-    <%- include('../partials/nav.ejs'); %>
-    <h1>Sign in</h1>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Task Buddy</title>
+  <link rel="stylesheet" href="/stylesheets/style.css" />
+</head>
+
+<body class="auth-body">
+  <%- include('../partials/nav.ejs'); %>
+  <div class="form_container">
+    <h1 class="form_header">Sign in</h1>
     <form action="/auth/sign-in" method="POST">
-      <label for="username">Username:</label>
-      <input type="text" name="username" id="username" />
-      <label for="password">Password:</label>
-      <input type="password" name="password" id="password" />
-      <button type="submit">Sign in</button>
+      <div class="form_group">
+        <label for="username">Username:</label>
+        <input type="text" name="username" id="username" required />
+      </div>
+      <div class="form_group">
+        <label for="password">Password:</label>
+        <input type="password" name="password" id="password" required />
+      </div>
+      <button type="submit" class="form_button">Sign in</button>
     </form>
-  </body>
+  </div>
+</body>
+
 </html>

@@ -1,31 +1,47 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Task Buddy</title>
-    <link rel="stylesheet" href="/stylesheets/style.css" />
-  </head>
 
-  <body>
-    <%- include('../partials/nav.ejs'); %>
-  <header>
-    <h1 class="section-title">USER's Todo page</h1>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Task Buddy</title>
+  <link rel="stylesheet" href="/stylesheets/style.css" />
+</head>
+
+<body class="todo-body">
+  <%- include('../partials/nav.ejs'); %>
+  <header class="main-header">
+    <h2><%= user.username %>'s Task Buddy</h2>
   </header>
-  <div class="todo-container">
-    <h2 class="section-title">Tasks</h2>
-    <ul>
-      <li>
-        <% todos.forEach(todo => { %>
-          <h3><%= todo.taskName %></h3>
-          <p><%= todo.taskDescription %></p>
-          <a href="/users/<%= user._id %>/todos/<%= todo._id %>">Edit Task</a>
-        <% }); %>
-      </li>
-    </ul>
-  </div>
-  <div class="todo-container">
-    <h2 class="section-title">Completed</h2>
+  <div class="lists">
+    <div class="list_container">
+      <h2 class="form_header">Tasks in Progress</h2>
+      <% todos.forEach(todo => { %>
+      <% if (!todo.isComplete) { %>
+      <div class="card">
+        <h3 class="card_name"><%= todo.taskName %></h3>
+        <% if (todo.taskDescription !== '') { %>
+        <p class="card_description"><%= todo.taskDescription %></p>
+        <% } %>
+        <a class="edit_btn" href="/users/<%= user._id %>/todos/<%= todo._id %>">Edit Task</a>
+      </div>
+      <% } %>
+      <% }); %>
+    </div>
+    <div class="list_container">
+      <h2 class="form_header">Tasks Completed</h2>
+      <% todos.forEach(todo => { %>
+      <% if (todo.isComplete) { %>
+      <div class="card">
+        <h3 class="card_name"><%= todo.taskName %></h3>
+        <% if (todo.taskDescription !== '') { %>
+        <p class="card_description"><%= todo.taskDescription %></p>
+        <% } %>
+        <a class="edit_btn" href="/users/<%= user._id %>/todos/<%= todo._id %>">Edit Task</a>
+      </div>
+      <% } %>
+      <% }); %>
+    </div>
   </div>
 </body>
 

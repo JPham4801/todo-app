@@ -1,24 +1,29 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Task Buddy</title>
-    <link rel="stylesheet" href="/stylesheets/style.css" />
-  </head>
 
-  <body>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Task Buddy</title>
+  <link rel="stylesheet" href="/stylesheets/style.css" />
+</head>
+
+<body class="todo-body">
     <%- include('../partials/nav.ejs'); %>
-  <h1>Rendering CREATE TODO page</h1>
-  <form action="/users/<%= user._id %>/todos" method="POST" id="taskForm">
-    <label for="taskName">Task Name: </label>
-    <input type="text" name="taskName" placeholder="required" required>
-
-    <label for="taskDescription">Description: </label>
-    <input type="text" name="taskDescription" placeholder="optional">
-
-    <button type="submit">Add Task</button>
-  </form>
-</body>
+    <div class="form_container">
+      <h1 class="form_header">Create a New Task</h1>
+      <form action="/users/<%= user._id %>/todos" method="POST" id="taskForm">
+        <div class="form_group">
+          <label for="taskName">Task Name:</label>
+          <input type="text" name="taskName" id="taskName" placeholder="required" required />
+        </div>
+        <div class="form_group">
+          <label for="taskDescription">Description:</label>
+          <textarea type="text" name="taskDescription" id="taskDescription" placeholder="optional"></textarea>
+        </div>
+        <button type="submit" class="form_button">Add Task</button>
+      </form>
+    </div>
+  </body>
 
 </html>
